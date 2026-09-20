@@ -812,6 +812,11 @@ Final BigQuery Marts are connected to Google Data Studio through the BigQuery Co
 NYC 311 Analytics Dashboard - Kayika Manuhita
 ```
 
+### Dashboard Link
+
+[Open NYC 311 Analytics Dashboard](https://datastudio.google.com/u/0/reporting/0262814d-cc1b-41de-a737-6b024d18215b/page/cgM9F)
+
+
 ### Page 1 — NYC 311 Overview
 
 Contains:
