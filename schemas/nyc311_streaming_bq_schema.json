@@ -1,0 +1,67 @@
+[
+  {
+    "name": "unique_key",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "created_date",
+    "type": "TIMESTAMP",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "closed_date",
+    "type": "TIMESTAMP",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "agency",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "agency_name",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "complaint_type",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "descriptor",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "status",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "borough",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "incident_zip",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "latitude",
+    "type": "FLOAT64",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "longitude",
+    "type": "FLOAT64",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "resolution_description",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  }
+]

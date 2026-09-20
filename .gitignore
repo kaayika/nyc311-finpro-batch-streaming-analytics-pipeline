@@ -1,0 +1,31 @@
+# Environment / credentials
+.env
+*.json.key
+application_default_credentials.json
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# Generated data
+data/batch/monthly/
+data/batch/daily/
+data/stream/sample/
+
+# Logs
+logs/
+*.log
+
+# Airflow generated files
+airflow.db
+airflow.cfg
+webserver_config.py
+simple_auth_manager_passwords.json.generated
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/

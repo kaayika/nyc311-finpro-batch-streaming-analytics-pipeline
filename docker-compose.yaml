@@ -1,0 +1,80 @@
+name: nyc311-final-project
+
+services:
+
+  airflow-db:
+    image: postgres:16
+    container_name: nyc311-airflow-db
+
+    environment:
+      POSTGRES_USER: airflow
+      POSTGRES_PASSWORD: airflow
+      POSTGRES_DB: airflow
+
+    volumes:
+      - airflow_db_data:/var/lib/postgresql/data
+
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - pg_isready -U airflow -d airflow
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+
+    restart: unless-stopped
+
+
+  airflow:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    container_name: nyc311-airflow
+
+    command: standalone
+
+    user: "${AIRFLOW_UID:-50000}:0"
+
+    environment:
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: >-
+        postgresql+psycopg2://airflow:airflow@airflow-db:5432/airflow
+
+      AIRFLOW__CORE__EXECUTOR: LocalExecutor
+      AIRFLOW__CORE__LOAD_EXAMPLES: "false"
+      AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: "false"
+
+      AIRFLOW__CORE__SIMPLE_AUTH_MANAGER_USERS: "admin:admin"
+      AIRFLOW_CONN_GOOGLE_CLOUD_DEFAULT: "google-cloud-platform://"
+
+      GOOGLE_APPLICATION_CREDENTIALS: >-
+        /home/airflow/.config/gcloud/application_default_credentials.json
+
+      GOOGLE_CLOUD_PROJECT: "jcdeah-009"
+
+      PYTHONPATH: /opt/airflow/scripts
+
+    ports:
+      - "8080:8080"
+
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./scripts:/opt/airflow/scripts
+      - ./sql:/opt/airflow/sql
+      - ./data:/opt/airflow/data
+      - ./schemas:/opt/airflow/schemas
+      - ./logs:/opt/airflow/logs
+      - ./plugins:/opt/airflow/plugins
+      - ${HOME}/.config/gcloud:/home/airflow/.config/gcloud:ro
+
+    depends_on:
+      airflow-db:
+        condition: service_healthy
+
+    restart: unless-stopped
+
+
+volumes:
+  airflow_db_data:
+

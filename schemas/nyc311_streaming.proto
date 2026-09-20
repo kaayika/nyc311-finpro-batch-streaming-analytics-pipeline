@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+message NYC311Event {
+  string unique_key = 1;
+  string created_date = 2;
+  string closed_date = 3;
+  string agency = 4;
+  string agency_name = 5;
+  string complaint_type = 6;
+  string descriptor = 7;
+  string status = 8;
+  string borough = 9;
+  string incident_zip = 10;
+  double latitude = 11;
+  double longitude = 12;
+  string resolution_description = 13;
+}
